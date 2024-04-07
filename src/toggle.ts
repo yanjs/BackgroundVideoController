@@ -1,14 +1,16 @@
 import { isPIPAvailable, isInPIP, getVideo } from "./video";
 (() => {
   if (!isPIPAvailable()) {
-    return;
+    return Promise.reject("Picture in Picture not available");
   }
   const v = getVideo();
 
-  if (!v) return;
+  if (!v) {
+    return Promise.reject("No video element detected");
+  }
   if (isInPIP()) {
-    document.exitPictureInPicture();
+    return document.exitPictureInPicture();
   } else {
-    v.requestPictureInPicture();
+    return v.requestPictureInPicture();
   }
 })();
