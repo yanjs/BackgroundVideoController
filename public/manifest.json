@@ -4,10 +4,10 @@
   "description": "In the background, control the video with keyboard shortcuts: toggle picture-in-picture, play/pause, skip forward, skip backward",
   "version": "1.0",
   "action": {
-    "default_icon": "icon.png",
     "default_title": "click to switch PiP"
   },
   "permissions": [
+    "activeTab",
     "scripting",
     "storage"
   ],
