@@ -110,12 +110,12 @@
     <path
        id="rect1"
        d="M 2.3629327,4.1515198 H 14.648934 a 1.0519265,1.0519265 45 0 1 1.051927,1.0519265 v 8.7275567 a 1.0519265,1.0519265 135 0 1 -1.051926,1.051926 l -12.2860023,0 A 1.0519265,1.0519265 45 0 1 1.3110062,13.931003 V 5.2034463 A 1.0519265,1.0519265 135 0 1 2.3629327,4.1515198 Z"
-       style="fill:none;stroke:#212121;stroke-width:0.993;stroke-opacity:1"
+       style="fill:#ffffff;stroke:#212121;stroke-width:0.993;stroke-opacity:1;fill-opacity:0.5"
        inkscape:path-effect="#path-effect3"
        inkscape:original-d="M 1.3110062,4.1515198 H 15.700861 V 14.982929 H 1.3110062 Z" />
     <path
        id="rect3"
-       style="fill:none;stroke:#212121;stroke-width:0.993"
+       style="fill:#ffffff;stroke:#212121;stroke-width:0.993;fill-opacity:0.74557525"
        d="m 9.7950891,9.9574051 h 3.3524299 a 0.89897571,0.89897571 45 0 1 0.898976,0.8989759 v 1.573207 a 0.89897571,0.89897571 135 0 1 -0.898976,0.898976 H 9.7950891 A 0.89897571,0.89897571 45 0 1 8.8961134,12.429588 V 10.856381 A 0.89897571,0.89897571 135 0 1 9.7950891,9.9574051 Z"
        inkscape:path-effect="#path-effect4"
        inkscape:original-d="M 8.8961134,9.9574051 H 14.046495 V 13.328564 H 8.8961134 Z" />
