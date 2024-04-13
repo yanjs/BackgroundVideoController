@@ -1,33 +1,49 @@
 import { Message } from "./types";
 import { getVideo } from "./video";
 
+const handleMessage = async (msg: Message) => {
+  let v: HTMLVideoElement;
+  try {
+    v = getVideo();
+  } catch (e) {
+    console.error("Failed to get video: ", e);
+    return;
+  }
+
+  switch (msg.action) {
+    case "pause":
+      if (v.paused) {
+        try {
+          await v.play();
+        } catch (e) {
+          console.error("Failed to play: ", e);
+        }
+        return;
+      } else {
+        return v.pause();
+      }
+    case "skipForward": {
+      const t = await chrome.storage.sync.get({ nextSecs: 10 });
+      v.currentTime = v.currentTime + t.nextSecs;
+      return;
+    }
+    case "skipBack": {
+      const t = await chrome.storage.sync.get({ prevSecs: 10 });
+      v.currentTime = v.currentTime - t.prevSecs;
+      return;
+    }
+    default:
+      console.error("Undefined message: ", msg.action);
+  }
+};
+
 (() => {
   window.onload = () => {
-    chrome.runtime.onMessage.addListener((msg: Message, sender, resp) => {
-      const v = getVideo();
-      if (!v) return;
-      switch (msg.action) {
-        case "pause":
-          if (v.paused) {
-            v.play();
-          } else {
-            v.pause();
-          }
-          break;
-        case "skipForward":
-          chrome.storage.sync.get({"nextSecs": 10}).then((t) => {
-            v.currentTime = v.currentTime + t.nextSecs;
-          });
-          break;
-        case "skipBack":
-          chrome.storage.sync.get({"prevSecs": 10}).then((t) => {
-            v.currentTime = v.currentTime - t.prevSecs;
-          });
-          break;
-        default:
-          console.log("Undefined message: ", msg.action);
+    chrome.runtime.onMessage.addListener(
+      (msg: Message, _sender, _sendResponse) => {
+        handleMessage(msg);
+        return undefined;
       }
-      return undefined;
-    });
+    );
   };
 })();

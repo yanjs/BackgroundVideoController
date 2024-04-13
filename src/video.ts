@@ -3,7 +3,7 @@ export const getVideo = () => {
   const availableVideos =  Array.from(document.getElementsByTagName("video"))
     .filter((e) => e.readyState)
     .filter((e) => !e.disablePictureInPicture);
-  if (availableVideos.length === 0) return;
+  if (availableVideos.length === 0) throw new Error("No video found");
 
   const getSize = (v: HTMLVideoElement) => {
     const bound = v.getBoundingClientRect();
