@@ -7,21 +7,20 @@ const { readFile, stat } = fs;
 import puppeteer, { Browser } from "puppeteer";
 import path from "path";
 
-// Check last modified date
-
 const screenshotHtml = `<html>
 <body>
   <img />
 </body>
 </html>`;
-type Task = { src: string; dest: string };
+
+type SvgPngConversionTask = { src: string; dest: string };
 
 const fatalErrorHandler = (e: any) => {
   console.error("Unable to continue because of an error", e);
   return process.exit(1);
 };
 
-const getTasks = () => {
+const getSrcDests = () => {
   return sourceSvg.map((src) => ({
     src: path.resolve("icon", src),
     dest: path.resolve("public", path.basename(src, ".svg") + ".png"),
@@ -34,9 +33,8 @@ class Converter {
   constructor() {
     this._browserPromise = puppeteer.launch();
   }
-  async convert(task: Task) {
+  async convert(task: SvgPngConversionTask) {
     const { src, dest } = task;
-    console.log(src, dest);
     const imgSrcPromise = readFile(src)
       .then((buffer) => buffer.toString("base64"))
       .then((base64) => `data:image/svg+xml;base64,${base64}`);
@@ -49,7 +47,6 @@ class Converter {
 
     const [imgSrc, page] = await Promise.all([imgSrcPromise, pagePromise]);
 
-    console.log("page:", page);
     await page
       .$eval(
         "img",
@@ -69,7 +66,6 @@ class Converter {
         return img;
       })
       .catch(fatalErrorHandler);
-    console.log("imgHandler:", imgHandler);
 
     const boundingBox = await imgHandler.boundingBox();
     if (!boundingBox) {
@@ -83,19 +79,16 @@ class Converter {
       omitBackground: true,
       clip: boundingBox,
     });
-    console.log(`generated ${dest}`);
   }
 
   async close() {
     const browser = await this._browserPromise;
-    console.log("before browser closed");
     await browser.close();
-    console.log("browser closed");
   }
 }
 
-const doTasks = async (converter: Converter) => {
-  const tasks = getTasks().map(async (task) => {
+const getTasks = async () => {
+  const tasks = getSrcDests().map(async (task) => {
     const srcTimePromise = stat(task.src).then((stat) => stat.mtimeMs);
     const destTimePromise = stat(task.dest)
       .then((stat) => stat.mtimeMs)
@@ -106,10 +99,10 @@ const doTasks = async (converter: Converter) => {
           throw e;
         }
       });
-    await Promise.all([srcTimePromise, destTimePromise])
-      .then(async ([srcTime, destTime]) => {
+    return await Promise.all([srcTimePromise, destTimePromise])
+      .then(([srcTime, destTime]) => {
         if (srcTime > destTime) {
-          return await converter.convert(task);
+          return task;
         } else {
           throw "skip";
         }
@@ -117,13 +110,24 @@ const doTasks = async (converter: Converter) => {
       .catch(() => {});
   });
 
-  await Promise.all(tasks);
+  const allResults = await Promise.allSettled(tasks);
+  return allResults
+    .filter((r): r is PromiseFulfilledResult<SvgPngConversionTask> => r.status === "fulfilled")
+    .map((r) => r.value);
 };
 
 const svg2png = async () => {
+  const tasks = await getTasks();
+  if (tasks.length === 0) {
+    return;
+  }
   const converter = new Converter();
-  await doTasks(converter);
+  tasks.map(async (task) => {
+    await converter.convert(task);
+  })
   await converter.close();
 };
 
-svg2png();
+(async () => {
+  await svg2png();
+})

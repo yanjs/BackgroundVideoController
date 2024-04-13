@@ -16,20 +16,7 @@ const getCurrentTab = () => {
 };
 
 const setIcon = (isInPIP: boolean) => {
-  const size = 64;
-  const canvas = new OffscreenCanvas(size, size);
-  const ctx = canvas.getContext('2d') as OffscreenCanvasRenderingContext2D;
-  
-  const icon = new Image();
-  if (isInPIP) {
-    icon.src = chrome.runtime.getURL('icon_pip.svg');
-  } else {
-    icon.src = chrome.runtime.getURL('icon.svg');
-  }
-
-  ctx.drawImage(icon, 0, 0, size, size);
-  const imageData = ctx.getImageData(0, 0, size, size);
-  chrome.action.setIcon({imageData: imageData});
+  chrome.action.setIcon({ path: isInPIP ? "icon_pip.png" : "icon.png" });
 };
 
 chrome.action.onClicked.addListener((tab) => {

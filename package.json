@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.js"
+    "build": "npx ts-node ./script/svg2png.ts && webpack --config webpack/webpack.config.js"
   },
   "dependencies": {
     "chrome-types": "^0.1.280",
