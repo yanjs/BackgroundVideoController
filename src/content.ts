@@ -32,6 +32,15 @@ const handleMessage = async (msg: Message) => {
       v.currentTime = v.currentTime - t.prevSecs;
       return;
     }
+    case "speedUp": {
+      v.playbackRate = v.playbackRate + 0.25;
+      return;
+    }
+    case "slowDown": {
+      if (v.playbackRate <= 0.25) return;
+      v.playbackRate = v.playbackRate - 0.25;
+      return;
+    }
     default:
       console.error("Undefined message: ", msg.action);
   }

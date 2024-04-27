@@ -27,13 +27,19 @@
       "description": "Skip Back",
       "global": true
     },
+    "speedUp": {
+      "description": "Speed Up"
+    },
+    "slowDown": {
+      "description": "Slow Down"
+    },
     "pause": {
       "suggested_key": "Alt+S",
       "description": "Pause / Play",
       "global": true
     },
     "_execute_action": {
-      "suggested_key": "Alt+Q",
+      "suggested_key": "Alt+W",
       "description": "Toggle Picture in Picture",
       "global": true
     }
