@@ -1,0 +1,50 @@
+{
+  "extName" : {
+    "message" : "Picture in Picture Controller",
+    "description" : "Extension Name"
+  },
+  "extDesc" : {
+    "message" : "In the background, control the video with keyboard shortcuts: toggle picture-in-picture, play/pause, skip forward, skip backward, speed up, and slow down",
+    "description" : "Extension Description"
+  },
+  "clickToSwitch": {
+    "message": "click to switch PiP",
+    "description": "The text of the button to switch PiP"
+  },
+  "optionsSaved": {
+    "message": "Options saved.",
+    "description": "Prompt when options are saved"
+  },
+  "secs": {
+    "message": "second(s)",
+    "description": "The text after the number input for seconds"
+  },
+  "skipBackwardBy": {
+    "message": "Skip backward by",
+    "description": "The text before the number input for skip backward by"
+  },
+  "skipForwardBy": {
+    "message": "Skip forward by",
+    "description": "The text before the number input for skip forward by"
+  },
+  "skipForward": {
+    "message": "Skip forward",
+    "description": "The text of skip forward"
+  },
+  "skipBackward": {
+    "message": "Skip backward",
+    "description": "The text of skip backward"
+  },
+  "speedUp": {
+    "message": "Speed up",
+    "description": "The text of speed up"
+  },
+  "slowDown": {
+    "message": "Slow down",
+    "description": "The text of slow down"
+  },
+  "pausePlay": {
+    "message": "Pause / Play",
+    "description": "The text of pause / play"
+  }
+}

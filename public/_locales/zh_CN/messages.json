@@ -1,0 +1,50 @@
+{
+  "extName" : {
+    "message" : "画中画控制器",
+    "description" : "Extension Name"
+  },
+  "extDesc" : {
+    "message" : "在后台，通过快捷键控制视频：切换画中画，暂停，快进，快退，加速，减速",
+    "description" : "Extension Description"
+  },
+  "clickToSwitch": {
+    "message": "点击切换画中画",
+    "description": "The text of the button to switch PiP"
+  },
+  "optionsSaved": {
+    "message": "选项已保存。",
+    "description": "Prompt when options are saved"
+  },
+  "secs": {
+    "message": "秒",
+    "description": "The text after the number input for seconds"
+  },
+  "skipBackwardBy": {
+    "message": "后退",
+    "description": "The text before the number input for skip backward by"
+  },
+  "skipForwardBy": {
+    "message": "前进",
+    "description": "The text before the number input for skip forward by"
+  },
+  "skipForward": {
+    "message": "后退",
+    "description": "The text of skip forward"
+  },
+  "skipBackward": {
+    "message": "前进",
+    "description": "The text of skip backward"
+  },
+  "speedUp": {
+    "message": "加速",
+    "description": "The text of speed up"
+  },
+  "slowDown": {
+    "message": "减速",
+    "description": "The text of slow down"
+  },
+  "pausePlay": {
+    "message": "暂停 / 播放",
+    "description": "The text of pause / play"
+  }
+}

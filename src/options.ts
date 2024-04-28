@@ -16,7 +16,10 @@ const saveOptions = () => {
     { prevSecs, nextSecs },
     () => {
       const status = document.getElementById('status') as HTMLDivElement;
-      status.textContent = 'Options saved.';
+      status.style.display = 'block';
+      setTimeout(() => {
+        status.style.display = 'none';
+      }, 3000);
     }
   );
 };

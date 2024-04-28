@@ -27,7 +27,7 @@ const handleMessage = async (msg: Message) => {
       v.currentTime = v.currentTime + t.nextSecs;
       return;
     }
-    case "skipBack": {
+    case "skipBackward": {
       const t = await chrome.storage.sync.get({ prevSecs: 10 });
       v.currentTime = v.currentTime - t.prevSecs;
       return;

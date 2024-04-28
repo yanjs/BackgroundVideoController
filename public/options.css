@@ -1,0 +1,31 @@
+.form-group {
+  display: flex;
+  align-items: center;
+}
+.form-group label {
+  flex: 2;
+  text-align: right;
+  margin-right: 1em;
+}
+.form-group input {
+  flex: 3;
+}
+.form-group .input-secs {
+  margin-left: 1em;
+  flex: 1;
+}
+#status {
+  display: none;
+}
+.i18n-secs::after {
+  content: "__MSG_secs__";
+}
+.i18n-skipForwardBy::after {
+  content: "__MSG_skipForwardBy__";
+}
+.i18n-skipBackwardBy::after {
+  content: "__MSG_skipBackwardBy__";
+}
+.i18n-optionsSaved::after {
+  content: "__MSG_optionsSaved__";
+}
